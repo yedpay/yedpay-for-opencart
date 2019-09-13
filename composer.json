@@ -1,0 +1,24 @@
+{
+    "name": "yedpay/opencart",
+    "description": "Receive Yedpay Payments on Opencart",
+    "version": "1.0.0",
+    "require": {
+        "yedpay/php-library": "1.1.0"
+    },
+    "license": "MIT",
+    "repositories": [
+        {
+            "type" : "vcs",
+            "url": "https://github.com/yedpay/php-library.git"
+        }
+    ],
+    "authors": [
+        {
+            "name": "yedpay",
+            "email": "info@gcash.co"
+        }
+    ],
+    "config": {
+        "vendor-dir": "./upload/system/library/"
+    }
+}
