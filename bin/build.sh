@@ -8,6 +8,6 @@ if [[ -f $ZIP_FILE ]]; then
     echo "$ZIP_FILE exist"
 fi
 
-composer install
+composer update
 
 zip -r $ZIP_FILE upload
