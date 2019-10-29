@@ -27,7 +27,7 @@ class ControllerExtensionPaymentYedpay extends Controller
 
         $currency = strtoupper($order_info['currency_code']);
         if ($currency != 'HKD') {
-            $this->log->write("YedPay error:  " . $currency . " not supported!");
+            $this->log->write('YedPay error:  ' . $currency . ' not supported!');
             die('Yedpay supports Hong Kong Dollars only!');
         }
 
@@ -57,7 +57,7 @@ class ControllerExtensionPaymentYedpay extends Controller
         $payment_url = '';
 
         if ($onlinePayment instanceof Error) {
-            $this->log->write("YedPay error:  " . strval($onlinePayment->getErrorCode()) . " - " . $onlinePayment->getMessage());
+            $this->log->write('YedPay error:  ' . strval($onlinePayment->getErrorCode()) . ' - ' . $onlinePayment->getMessage());
             die('An error has occurred. Please try again later or contact the store owner.');
         } elseif ($onlinePayment instanceof Success) {
             $paymentData = json_decode(json_encode($onlinePayment->getData()), true);
@@ -65,10 +65,6 @@ class ControllerExtensionPaymentYedpay extends Controller
         }
 
         $data['action'] = $payment_url; //$gateway_url . 'precreate/' . $store_id;//$config['gateway_url'] . "?charset=" . $this->model_extension_payment_yedpay->getPostCharset();
-        $token_params = [];
-
-        $token_params['return_url'] = $this->url->link('checkout/success', '', true);
-        $data['form_params'] = $token_params; //$response;
 
         return $this->load->view('extension/payment/yedpay', $data);
     }
