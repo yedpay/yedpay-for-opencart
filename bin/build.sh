@@ -10,4 +10,4 @@ fi
 
 composer update
 
-zip -r $ZIP_FILE upload
+zip -r $ZIP_FILE upload ./install.xml

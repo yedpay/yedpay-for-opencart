@@ -1,10 +1,10 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "41642d7805723e69bf5a5e61acd73985",
+    "content-hash": "4f712a67ea6aa0aa30021baa0d360df7",
     "packages": [
         {
             "name": "yedpay/php-library",

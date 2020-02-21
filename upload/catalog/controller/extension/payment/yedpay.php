@@ -10,11 +10,13 @@ class ControllerExtensionPaymentYedpay extends Controller
 {
     public function index()
     {
+        $this->load->language('extension/payment/yedpay');
         $total_requirement = $this->config->get('payment_yedpay_total') == null ? 1 : $this->config->get('payment_yedpay_total');
         if ($this->cart->countProducts() < $total_requirement) {
             die('You must spend at least $' . $total_requirement . ' to use Yedpay');
         }
         $data['button_confirm'] = $this->language->get('button_confirm');
+        $data['payment_description'] = $this->language->get('payment_description');
 
         $this->load->model('checkout/order');
 
