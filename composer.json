@@ -1,9 +1,9 @@
 {
     "name": "yedpay/opencart",
     "description": "Receive Yedpay Payments on Opencart",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "require": {
-        "yedpay/php-library": "1.2.0"
+        "yedpay/php-library": "1.2.2"
     },
     "license": "MIT",
     "repositories": [

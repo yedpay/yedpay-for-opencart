@@ -42,6 +42,12 @@ class ControllerExtensionPaymentYedpay extends Controller
             'staging' :
             'production';
 
+        $custom_id = $out_trade_no;
+        $custom_id_prefix = $this->config->get('payment_yedpay_custom_id_prefix');
+        if (!empty($custom_id_prefix)) {
+            $custom_id = $custom_id_prefix . '-' . $out_trade_no;
+        }
+
         // create data request
         try {
             $client = new Client($environment, $apikey, false);
@@ -50,7 +56,7 @@ class ControllerExtensionPaymentYedpay extends Controller
             $client->setCurrency($currency)
                 ->setNotifyUrl($this->url->link('extension/payment/yedpay/expressNotify', '', true))
                 ->setReturnUrl($this->url->link('extension/payment/yedpay/expressReturn', '', true));
-            $onlinePayment = $client->onlinePayment($out_trade_no, $total_amount);
+            $onlinePayment = $client->onlinePayment($custom_id, $total_amount);
         } catch (Exception $e) {
             $this->log->write($e);
             die('An error has occurred. Please try again later or contact the store owner' . ' ' . $e);
@@ -79,7 +85,15 @@ class ControllerExtensionPaymentYedpay extends Controller
         error_log('Yedpay notified');
 
         if (isset($arr['custom_id']) && isset($arr['status'])) {
-            $orderId = $arr['custom_id'];
+            $custom_id_prefix = $this->config->get('payment_yedpay_custom_id_prefix');
+            if (!empty($custom_id_prefix) && strpos($arr['custom_id'], $custom_id_prefix . '-') !== false) {
+                $orderId = substr($arr['custom_id'], strlen($custom_id_prefix . '-'));
+            } elseif (strpos($arr['custom_id'], '-') !== false) {
+                $orderId = explode('-', $arr['custom_id'])[1];
+            } else {
+                $orderId = $arr['custom_id'];
+            }
+
             if ($arr['status'] == 'paid') {
                 $result = true;
             }

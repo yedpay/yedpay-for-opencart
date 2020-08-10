@@ -1,7 +1,7 @@
 <?php
 class ControllerExtensionPaymentYedpay extends Controller
 {
-    private $error = array();
+    private $error = [];
     private $paramKeys = [
         'payment_yedpay_token',
         'payment_yedpay_sign_key',
@@ -11,6 +11,7 @@ class ControllerExtensionPaymentYedpay extends Controller
         'payment_yedpay_test',
         'payment_yedpay_status',
         'payment_yedpay_sort_order',
+        'payment_yedpay_custom_id_prefix',
     ];
 
     public function index()
@@ -30,24 +31,24 @@ class ControllerExtensionPaymentYedpay extends Controller
         $data['error_warning'] = $this->error['warning'] ?? '';
         $data['error_token'] = $this->error['token'] ?? '';
         $data['error_sign_key'] = $this->error['sign_key'] ?? '';
+        $data['error_custom_id_prefix'] = $this->error['custom_id_prefix'] ?? '';
 
+        $data['breadcrumbs'] = [];
 
-        $data['breadcrumbs'] = array();
-
-        $data['breadcrumbs'][] = array(
+        $data['breadcrumbs'][] = [
             'text' => $this->language->get('text_home'),
             'href' => $this->url->link('common/dashboard', 'user_token=' . $this->session->data['user_token'], true)
-        );
+        ];
 
-        $data['breadcrumbs'][] = array(
+        $data['breadcrumbs'][] = [
             'text' => $this->language->get('text_extension'),
             'href' => $this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', true)
-        );
+        ];
 
-        $data['breadcrumbs'][] = array(
+        $data['breadcrumbs'][] = [
             'text' => $this->language->get('heading_title'),
             'href' => $this->url->link('extension/payment/yedpay', 'user_token=' . $this->session->data['user_token'], true)
-        );
+        ];
 
         $data['action'] = $this->url->link('extension/payment/yedpay', 'user_token=' . $this->session->data['user_token'], true);
 
@@ -79,6 +80,11 @@ class ControllerExtensionPaymentYedpay extends Controller
         }
         if (!$this->request->post['payment_yedpay_sign_key']) {
             $this->error['sign_key'] = $this->language->get('error_sign_key');
+        }
+
+        if (!empty($this->request->post['payment_yedpay_custom_id_prefix']) &&
+            !preg_match('/^[a-zA-Z]{1,10}$/', $this->request->post['payment_yedpay_custom_id_prefix'])) {
+            $this->error['custom_id_prefix'] = $this->language->get('error_custom_id_prefix');
         }
 
         return !$this->error;
