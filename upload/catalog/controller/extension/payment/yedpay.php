@@ -55,7 +55,28 @@ class ControllerExtensionPaymentYedpay extends Controller
 
             $client->setCurrency($currency)
                 ->setNotifyUrl($this->url->link('extension/payment/yedpay/expressNotify', '', true))
-                ->setReturnUrl($this->url->link('extension/payment/yedpay/expressReturn', '', true));
+                ->setReturnUrl($this->url->link('extension/payment/yedpay/expressReturn', '', true))
+                ->setSubject('Order #' . $custom_id)
+                ->setMetadata(json_encode([
+                    'opencart' => VERSION,
+                    'yedpay_for_opencart' => '1.1.0',
+                ]));
+
+            $billing_country = strtoupper(trim($order_info['payment_iso_code_2']));
+            $billing_address = [
+                'email' => trim($order_info['email']),
+                'billing_country' => $billing_country,
+                'billing_post_code' => trim($order_info['payment_postcode']),
+                'billing_city' => trim($order_info['payment_city']),
+                'billing_address1' => trim($order_info['payment_address_1']),
+                'billing_address2' => trim($order_info['payment_address_2']),
+            ];
+
+            if ($billing_country == 'US' || $billing_country == 'CA') {
+                $billing_address['billing_state'] = trim($order_info['payment_zone_code']);
+            }
+            $client->setPaymentData(json_encode($billing_address));
+
             $onlinePayment = $client->onlinePayment($custom_id, $total_amount);
         } catch (Exception $e) {
             $this->log->write($e);
