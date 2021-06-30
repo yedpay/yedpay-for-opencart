@@ -12,6 +12,9 @@ class ControllerExtensionPaymentYedpay extends Controller
         'payment_yedpay_status',
         'payment_yedpay_sort_order',
         'payment_yedpay_custom_id_prefix',
+        'payment_yedpay_support_gateway',
+        'payment_yedpay_support_wallet',
+        'payment_yedpay_expiry_time',
     ];
 
     public function index()
@@ -32,6 +35,7 @@ class ControllerExtensionPaymentYedpay extends Controller
         $data['error_token'] = $this->error['token'] ?? '';
         $data['error_sign_key'] = $this->error['sign_key'] ?? '';
         $data['error_custom_id_prefix'] = $this->error['custom_id_prefix'] ?? '';
+        $data['error_expiry_time'] = $this->error['expiry_time'] ?? '';
 
         $data['breadcrumbs'] = [];
 
@@ -85,6 +89,15 @@ class ControllerExtensionPaymentYedpay extends Controller
         if (!empty($this->request->post['payment_yedpay_custom_id_prefix']) &&
             !preg_match('/^[a-zA-Z]{1,10}$/', $this->request->post['payment_yedpay_custom_id_prefix'])) {
             $this->error['custom_id_prefix'] = $this->language->get('error_custom_id_prefix');
+        }
+
+        $expiryTime = $this->request->post['payment_yedpay_expiry_time'];
+        if (!$expiryTime ||
+            !is_numeric($expiryTime) ||
+            !filter_var($expiryTime, FILTER_VALIDATE_INT) ||
+            $expiryTime < '900' ||
+            $expiryTime > '10800') {
+            $this->error['expiry_time'] = $this->language->get('error_expiry_time');
         }
 
         return !$this->error;
