@@ -53,7 +53,7 @@ class ControllerExtensionPaymentYedpay extends Controller
                 ->setSubject('Order #' . $custom_id)
                 ->setMetadata(json_encode([
                     'opencart' => VERSION,
-                    'yedpay_for_opencart' => '1.1.0',
+                    'yedpay_for_opencart' => '1.1.1',
                 ]));
 
             $support_gateway = $this->config->get('payment_yedpay_support_gateway');
