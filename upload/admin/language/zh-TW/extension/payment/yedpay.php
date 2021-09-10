@@ -27,6 +27,7 @@ $_['entry_support_gateway'] = '支付渠道';
 $_['entry_support_wallet'] = '支付渠道錢包';
 $_['entry_expiry_time'] = '有效期限';
 $_['entry_custom_id_prefix'] = '訂單編號前綴';
+$_['entry_checkout_domain_id'] = '付款網域ID';
 
 $_['entry_total'] = '最小交易金額';
 $_['entry_order_status'] = '交易成功狀態';

@@ -15,6 +15,7 @@ class ControllerExtensionPaymentYedpay extends Controller
         'payment_yedpay_support_gateway',
         'payment_yedpay_support_wallet',
         'payment_yedpay_expiry_time',
+        'payment_yedpay_checkout_domain_id',
     ];
 
     public function index()
