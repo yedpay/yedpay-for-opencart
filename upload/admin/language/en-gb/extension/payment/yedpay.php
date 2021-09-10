@@ -27,6 +27,7 @@ $_['entry_support_gateway'] = 'Support Gateway';
 $_['entry_support_wallet'] = 'Support Wallet';
 $_['entry_expiry_time'] = 'Expiry Time';
 $_['entry_custom_id_prefix'] = 'Order ID Prefix';
+$_['entry_checkout_domain_id'] = 'Checkout Domain ID';
 
 $_['entry_total'] = 'Minimum Payment';
 $_['entry_order_status'] = 'Completed Status';

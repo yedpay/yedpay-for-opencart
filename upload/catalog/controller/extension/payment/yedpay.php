@@ -53,7 +53,7 @@ class ControllerExtensionPaymentYedpay extends Controller
                 ->setSubject('Order #' . $custom_id)
                 ->setMetadata(json_encode([
                     'opencart' => VERSION,
-                    'yedpay_for_opencart' => '1.1.1',
+                    'yedpay_for_opencart' => '1.1.2',
                 ]));
 
             $support_gateway = $this->config->get('payment_yedpay_support_gateway');
@@ -62,7 +62,7 @@ class ControllerExtensionPaymentYedpay extends Controller
             if ($support_gateway != '0') {
                 $client->setGatewayCode($support_gateway);
             }
-            if ($support_gateway == '4_2' && $support_wallet != '0') {
+            if ($support_wallet != '0') {
                 $client->setWallet($this->getWallet($support_wallet));
             }
             if (is_numeric($expiry_time) &&
@@ -87,6 +87,11 @@ class ControllerExtensionPaymentYedpay extends Controller
                 $billing_address['billing_state'] = trim($order_info['payment_zone_code']);
             }
             $client->setPaymentData(json_encode($billing_address));
+
+            $checkout_domain_id = $this->config->get('payment_yedpay_checkout_domain_id');
+            if (!empty($checkout_domain_id)) {
+                $client->setCheckoutDomainId($checkout_domain_id);
+            }
 
             $online_payment = $client->onlinePayment($custom_id, $total_amount);
         } catch (Exception $e) {
