@@ -19,15 +19,15 @@ $_['text_gateway_unionpay_upop'] = 'UnionPay UPOP Only';
 $_['text_gateway_credit_card_online'] = 'Visa/mastercard Only';
 
 // Entry
-$_['entry_token'] = 'API Key';
-$_['entry_sign_key'] = 'Sign Key';
+$_['entry_token'] = 'Yedpay API Key';
+$_['entry_sign_key'] = 'Yedpay Sign Key';
+$_['entry_checkout_domain_id'] = 'Yedpay Checkout Domain ID';
 
 $_['entry_test'] = 'Production/Sandbox Mode';
 $_['entry_support_gateway'] = 'Support Gateway';
 $_['entry_support_wallet'] = 'Support Wallet';
 $_['entry_expiry_time'] = 'Expiry Time';
 $_['entry_custom_id_prefix'] = 'Order ID Prefix';
-$_['entry_checkout_domain_id'] = 'Checkout Domain ID';
 
 $_['entry_total'] = 'Minimum Payment';
 $_['entry_order_status'] = 'Completed Status';
@@ -36,6 +36,10 @@ $_['entry_status'] = 'Status';
 $_['entry_sort_order'] = 'Sort Order';
 
 // Help
+$_['help_token'] = 'Yedpay API Key. Please update the Key according to payment mode.';
+$_['help_sign_key'] = 'Yedpay Sign Key. Please update the Key according to payment mode.';
+$_['help_checkout_domain_id'] = 'Yedpay Checkout Domain ID. Can be empty. Please update the Checkout Domain ID according to payment mode.';
+
 $_['help_total'] = 'Minimum order amount before Yedpay will be enabled as a payment option (leave empty if Yedpay should always be enabled)';
 $_['help_yedpay_setup'] = '<a target="_blank" href="http://www.yedpay.com">Click here</a> to learn how to set up Yedpay account.';
 $_['help_test'] = 'Payment mode of Yedpay. Production mode for actual payment. Please update API Key and Sign Key according to the mode.';

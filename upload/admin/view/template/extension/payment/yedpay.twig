@@ -38,7 +38,9 @@
                 <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-payment" class="form-horizontal">
                     <div class="tab-content">
                         <div class="form-group required">
-                            <label class="col-sm-2 control-label" for="input-token">{{ entry_token }}</label>
+                            <label class="col-sm-2 control-label" for="input-token">
+                                <span data-toggle="tooltip" title="{{ help_token }}">{{ entry_token }}</span>
+                            </label>
                             <div class="col-sm-10">
                                 <input type="text" name="payment_yedpay_token" value="{{ payment_yedpay_token }}" placeholder="{{ entry_token }}" id="input-token" class="form-control"/>
                                 {% if error_token %}
@@ -47,7 +49,9 @@
                             </div>
                         </div>
                         <div class="form-group required">
-                            <label class="col-sm-2 control-label" for="input-sign-key">{{ entry_sign_key }}</label>
+                            <label class="col-sm-2 control-label" for="input-sign-key">
+                                <span data-toggle="tooltip" title="{{ help_sign_key }}">{{ entry_sign_key }}</span>
+                            </label>
                             <div class="col-sm-10">
                                 <input type="text" name="payment_yedpay_sign_key" value="{{ payment_yedpay_sign_key }}" placeholder="{{ entry_sign_key }}" id="input-sign-ley" class="form-control"/>
                                 {% if error_sign_key %}
@@ -56,8 +60,17 @@
                             </div>
                         </div>
                         <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-checkout-domain-id">
+                                <span data-toggle="tooltip" title="{{ help_checkout_domain_id }}">{{ entry_checkout_domain_id }}</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="payment_yedpay_checkout_domain_id" value="{{ payment_yedpay_checkout_domain_id }}" placeholder="{{ entry_checkout_domain_id }}" id="input-checkout-domain-id" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-test">
-                                <span data-toggle="tooltip" title="{{ help_test }}">{{ entry_test }}</span></label>
+                                <span data-toggle="tooltip" title="{{ help_test }}">{{ entry_test }}</span>
+                            </label>
                             <div class="col-sm-10">
                                 <select name="payment_yedpay_test" id="input-test" class="form-control">
                                     {% if payment_yedpay_test == 'sandbox' %}
@@ -75,7 +88,8 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-support-gateway">
-                                <span data-toggle="tooltip" title="{{ help_support_gateway }}">{{ entry_support_gateway }}</label>
+                                <span data-toggle="tooltip" title="{{ help_support_gateway }}">{{ entry_support_gateway }}</span>
+                            </label>
                             <div class="col-sm-10">
                                 <select name="payment_yedpay_support_gateway" id="input-support-gateway" class="form-control">
                                     {% if payment_yedpay_support_gateway == '0' %}
@@ -113,7 +127,8 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-support-wallet">
-                                <span data-toggle="tooltip" title="{{ help_support_wallet }}">{{ entry_support_wallet }}</label>
+                                <span data-toggle="tooltip" title="{{ help_support_wallet }}">{{ entry_support_wallet }}</span>
+                            </label>
                             <div class="col-sm-10">
                                 <select name="payment_yedpay_support_wallet" id="input-support-wallet" class="form-control">
                                     {% if payment_yedpay_support_wallet == '0' %}
@@ -136,7 +151,8 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-expiry-time">
-                                <span data-toggle="tooltip" title="{{ help_expiry_time }}">{{ entry_expiry_time }}</label>
+                                <span data-toggle="tooltip" title="{{ help_expiry_time }}">{{ entry_expiry_time }}</span>
+                            </label>
                             <div class="col-sm-10">
                                 {% if payment_yedpay_expiry_time %}
                                     <input type="text" name="payment_yedpay_expiry_time" value="{{ payment_yedpay_expiry_time }}" placeholder="{{ entry_expiry_time }}" id="input-expiry-time" class="form-control"/>
@@ -150,7 +166,8 @@
                         </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-custom-id-prefix">
-                                <span data-toggle="tooltip" title="{{ help_custom_id_prefix }}">{{ entry_custom_id_prefix }}</span></label>
+                                <span data-toggle="tooltip" title="{{ help_custom_id_prefix }}">{{ entry_custom_id_prefix }}</span>
+                            </label>
                             <div class="col-sm-10">
                                 <input type="text" name="payment_yedpay_custom_id_prefix" value="{{ payment_yedpay_custom_id_prefix }}" placeholder="{{ entry_custom_id_prefix }}" id="input-custom-id-prefix" class="form-control"/>
                                 {% if error_custom_id_prefix %}
@@ -158,16 +175,11 @@
                                 {% endif %}
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="input-checkout-domain-id">{{ entry_checkout_domain_id }}</label>
-                            <div class="col-sm-10">
-                                <input type="text" name="payment_yedpay_checkout_domain_id" value="{{ payment_yedpay_checkout_domain_id }}" placeholder="{{ entry_checkout_domain_id }}" id="input-checkout-domain-id" class="form-control"/>
-                            </div>
-                        </div>
 
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-total">
-                                <span data-toggle="tooltip" title="{{ help_total }}">{{ entry_total }}</span></label>
+                                <span data-toggle="tooltip" title="{{ help_total }}">{{ entry_total }}</span>
+                            </label>
                             <div class="col-sm-10">
                                 <input type="text" name="payment_yedpay_total" value="{{ payment_yedpay_total }}" placeholder="{{ entry_total }}" id="input-total" class="form-control"/>
                             </div>
