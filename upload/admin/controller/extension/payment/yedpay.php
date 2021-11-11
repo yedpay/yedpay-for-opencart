@@ -32,11 +32,11 @@ class ControllerExtensionPaymentYedpay extends Controller
 
             $this->response->redirect($this->url->link('marketplace/extension', 'user_token=' . $this->session->data['user_token'] . '&type=payment', true));
         }
-        $data['error_warning'] = $this->error['warning'] ?? '';
-        $data['error_token'] = $this->error['token'] ?? '';
-        $data['error_sign_key'] = $this->error['sign_key'] ?? '';
-        $data['error_custom_id_prefix'] = $this->error['custom_id_prefix'] ?? '';
-        $data['error_expiry_time'] = $this->error['expiry_time'] ?? '';
+        $data['error_warning'] = isset($this->error['warning']) ? $this->error['warning'] : '';
+        $data['error_token'] = isset($this->error['token']) ? $this->error['token'] : '';
+        $data['error_sign_key'] = isset($this->error['sign_key']) ? $this->error['sign_key'] : '';
+        $data['error_custom_id_prefix'] = isset($this->error['custom_id_prefix']) ? $this->error['custom_id_prefix'] : '';
+        $data['error_expiry_time'] = isset($this->error['expiry_time']) ? $this->error['expiry_time'] : '';
 
         $data['breadcrumbs'] = [];
 
@@ -107,7 +107,7 @@ class ControllerExtensionPaymentYedpay extends Controller
     public function setData($data)
     {
         foreach ($this->paramKeys as $key) {
-            $data[$key] = $this->request->post[$key] ?? $this->config->get($key);
+            $data[$key] = isset($this->request->post[$key]) ? $this->request->post[$key] : $this->config->get($key);
         }
 
         return $data;

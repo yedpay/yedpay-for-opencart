@@ -62,7 +62,7 @@ class ControllerExtensionPaymentYedpay extends Controller
             if ($support_gateway != '0') {
                 $client->setGatewayCode($support_gateway);
             }
-            if ($support_wallet != '0') {
+            if ($support_gateway == '4_2' && $support_wallet != '0') {
                 $client->setWallet($this->getWallet($support_wallet));
             }
             if (is_numeric($expiry_time) &&

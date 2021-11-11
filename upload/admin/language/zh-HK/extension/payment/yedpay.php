@@ -7,6 +7,7 @@ $_['text_extension'] = '插件';
 $_['text_success'] = '成功: 你已修改設定!';
 $_['text_edit'] = '修改Yedpay設定';
 $_['text_yedpay'] = '<a target="_BLANK" href="https://www.yedpay.com"><img src="view/image/payment/yedpay.png" alt="Yedpay" title="Yedpay Website" style="border: 1px solid #EEEEEE;" height = "42" width = "140"/></a>';
+$_['text_description'] = '支付寶香港, 支付寶, 微信支付, 線上銀聯, 線上Visa/mastercard';
 $_['text_live'] = '生產模式';
 $_['text_sandbox'] = '測試模式';
 $_['text_all'] = '全部';
@@ -19,6 +20,8 @@ $_['text_gateway_unionpay_upop'] = '只有UnionPay UPOP';
 $_['text_gateway_credit_card_online'] = '只有Visa/mastercard';
 
 // Entry
+$_['entry_description'] = '描述';
+
 $_['entry_token'] = 'Yedpay API密鑰';
 $_['entry_sign_key'] = 'Yedpay簽名密鑰';
 $_['entry_checkout_domain_id'] = 'Yedpay付款網域ID';
@@ -36,6 +39,8 @@ $_['entry_status'] = '狀態';
 $_['entry_sort_order'] = '訂單排列';
 
 // Help
+$_['help_description'] = '顧客結帳時看見的描述';
+
 $_['help_token'] = 'Yedpay API密鑰。請根據付款模式更新API密鑰。';
 $_['help_sign_key'] = 'Yedpay簽名密鑰。請根據付款模式更新簽名密鑰。';
 $_['help_checkout_domain_id'] = 'Yedpay付款網域ID。可留空。請根據付款模式更新付款網域ID。';

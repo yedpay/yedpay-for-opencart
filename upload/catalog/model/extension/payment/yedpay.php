@@ -20,9 +20,14 @@ class ModelExtensionPaymentYedpay extends Model
         $method_data = [];
 
         if ($status) {
+            $title = $this->language->get('text_title');
+            if (!empty($this->config->get('payment_yedpay_description'))) {
+                $title = $title . ' (' . $this->config->get('payment_yedpay_description') . ')';
+            }
+
             $method_data = [
                 'code' => 'yedpay',
-                'title' => $this->language->get('text_title'),
+                'title' => $title,
                 'terms' => '',
                 'sort_order' => $this->config->get('payment_yedpay_sort_order')
             ];

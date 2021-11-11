@@ -7,6 +7,7 @@ $_['text_extension'] = 'Extensions';
 $_['text_success'] = 'Success: You have modified Yedpay account details!';
 $_['text_edit'] = 'Edit Yedpay Settings';
 $_['text_yedpay'] = '<a target="_BLANK" href="https://www.yedpay.com"><img src="view/image/payment/yedpay.png" alt="Yedpay" title="Yedpay Website" style="border: 1px solid #EEEEEE;" height = "42" width = "140"/></a>';
+$_['text_description'] = 'AlipayHK, Alipay, WeChat Pay, UnionPay Online, Visa/mastercard';
 $_['text_live'] = 'Live';
 $_['text_sandbox'] = 'Sandbox';
 $_['text_all'] = 'All';
@@ -19,6 +20,8 @@ $_['text_gateway_unionpay_upop'] = 'UnionPay UPOP Only';
 $_['text_gateway_credit_card_online'] = 'Visa/mastercard Only';
 
 // Entry
+$_['entry_description'] = 'Description';
+
 $_['entry_token'] = 'Yedpay API Key';
 $_['entry_sign_key'] = 'Yedpay Sign Key';
 $_['entry_checkout_domain_id'] = 'Yedpay Checkout Domain ID';
@@ -36,6 +39,8 @@ $_['entry_status'] = 'Status';
 $_['entry_sort_order'] = 'Sort Order';
 
 // Help
+$_['help_description'] = 'The description which the user sees during checkout';
+
 $_['help_token'] = 'Yedpay API Key. Please update the Key according to payment mode.';
 $_['help_sign_key'] = 'Yedpay Sign Key. Please update the Key according to payment mode.';
 $_['help_checkout_domain_id'] = 'Yedpay Checkout Domain ID. Can be empty. Please update the Checkout Domain ID according to payment mode.';

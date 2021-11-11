@@ -37,36 +37,6 @@
             <div class="panel-body">
                 <form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-payment" class="form-horizontal">
                     <div class="tab-content">
-                        <div class="form-group required">
-                            <label class="col-sm-2 control-label" for="input-token">
-                                <span data-toggle="tooltip" title="{{ help_token }}">{{ entry_token }}</span>
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" name="payment_yedpay_token" value="{{ payment_yedpay_token }}" placeholder="{{ entry_token }}" id="input-token" class="form-control"/>
-                                {% if error_token %}
-                                    <div class="text-danger">{{ error_token }}</div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="form-group required">
-                            <label class="col-sm-2 control-label" for="input-sign-key">
-                                <span data-toggle="tooltip" title="{{ help_sign_key }}">{{ entry_sign_key }}</span>
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" name="payment_yedpay_sign_key" value="{{ payment_yedpay_sign_key }}" placeholder="{{ entry_sign_key }}" id="input-sign-ley" class="form-control"/>
-                                {% if error_sign_key %}
-                                    <div class="text-danger">{{ error_sign_key }}</div>
-                                {% endif %}
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label class="col-sm-2 control-label" for="input-checkout-domain-id">
-                                <span data-toggle="tooltip" title="{{ help_checkout_domain_id }}">{{ entry_checkout_domain_id }}</span>
-                            </label>
-                            <div class="col-sm-10">
-                                <input type="text" name="payment_yedpay_checkout_domain_id" value="{{ payment_yedpay_checkout_domain_id }}" placeholder="{{ entry_checkout_domain_id }}" id="input-checkout-domain-id" class="form-control"/>
-                            </div>
-                        </div>
                         <div class="form-group">
                             <label class="col-sm-2 control-label" for="input-test">
                                 <span data-toggle="tooltip" title="{{ help_test }}">{{ entry_test }}</span>
@@ -84,6 +54,48 @@
                                         <option value="live">{{ text_live }}</option>
                                     {% endif %}
                                 </select>
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label" for="input-sign-key">
+                                <span data-toggle="tooltip" title="{{ help_sign_key }}">{{ entry_sign_key }}</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="payment_yedpay_sign_key" value="{{ payment_yedpay_sign_key }}" placeholder="{{ entry_sign_key }}" id="input-sign-key" class="form-control"/>
+                                {% if error_sign_key %}
+                                    <div class="text-danger">{{ error_sign_key }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group required">
+                            <label class="col-sm-2 control-label" for="input-token">
+                                <span data-toggle="tooltip" title="{{ help_token }}">{{ entry_token }}</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="payment_yedpay_token" value="{{ payment_yedpay_token }}" placeholder="{{ entry_token }}" id="input-token" class="form-control"/>
+                                {% if error_token %}
+                                    <div class="text-danger">{{ error_token }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-checkout-domain-id">
+                                <span data-toggle="tooltip" title="{{ help_checkout_domain_id }}">{{ entry_checkout_domain_id }}</span>
+                            </label>
+                            <div class="col-sm-10">
+                                <input type="text" name="payment_yedpay_checkout_domain_id" value="{{ payment_yedpay_checkout_domain_id }}" placeholder="{{ entry_checkout_domain_id }}" id="input-checkout-domain-id" class="form-control"/>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="col-sm-2 control-label" for="input-description">
+                                <span data-toggle="tooltip" title="{{ help_description }}">{{ entry_description }}</span>
+                            </label>
+                            <div class="col-sm-10">
+                                {% if payment_yedpay_description %}
+                                    <input type="text" name="payment_yedpay_description" value="{{ payment_yedpay_description }}" placeholder="{{ entry_description }}" id="input-description" class="form-control"/>
+                                {% else %}
+                                    <input type="text" name="payment_yedpay_description" value="{{ text_description }}" placeholder="{{ entry_description }}" id="input-description" class="form-control"/>
+                                {% endif %}
                             </div>
                         </div>
                         <div class="form-group">
