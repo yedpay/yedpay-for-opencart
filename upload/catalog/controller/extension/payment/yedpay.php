@@ -65,7 +65,8 @@ class ControllerExtensionPaymentYedpay extends Controller
             if ($support_gateway == '4_2' && $support_wallet != '0') {
                 $client->setWallet($this->getWallet($support_wallet));
             }
-            if (is_numeric($expiry_time) &&
+            if (
+                is_numeric($expiry_time) &&
                 filter_var($expiry_time, FILTER_VALIDATE_INT) &&
                 $expiry_time >= '900' &&
                 $expiry_time <= '10800'
@@ -75,7 +76,10 @@ class ControllerExtensionPaymentYedpay extends Controller
 
             $billing_country = strtoupper(trim($order_info['payment_iso_code_2']));
             $billing_address = [
+                'first_name' => trim($order_info['payment_firstname']),
+                'last_name'  => trim($order_info['payment_lastname']),
                 'email' => trim($order_info['email']),
+                'phone' => $order_info['telephone'],
                 'billing_country' => $billing_country,
                 'billing_post_code' => trim($order_info['payment_postcode']),
                 'billing_city' => trim($order_info['payment_city']),
@@ -125,7 +129,7 @@ class ControllerExtensionPaymentYedpay extends Controller
         }
 
         if ($is_payment_success) {
-            echo('success'); //Do not modified or delete
+            echo ('success'); //Do not modified or delete
         } else {
             $this->log->write('Payment failed');
             //check failed
