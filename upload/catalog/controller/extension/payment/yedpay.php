@@ -107,6 +107,14 @@ class ControllerExtensionPaymentYedpay extends Controller
 
         if ($online_payment instanceof Error) {
             $this->log->write('YedPay error:  ' . strval($online_payment->getErrorCode()) . ' - ' . $online_payment->getMessage());
+            if ($online_payment->getErrorCode() == 422 && is_array($online_payment->getErrors())) {
+                $error_message = 'YedPay error details:  ';
+                foreach ($online_payment->getErrors() as $validationErrors) {
+                    foreach ($validationErrors as $errorKey => $errorInfo) {
+                        $error_message .= $errorKey . ': ' . $errorInfo . ' ';
+                    }
+                }
+            }
             die('An error has occurred. Please try again later or contact the store owner.');
         } elseif ($online_payment instanceof Success) {
             $payment_data = json_decode(json_encode($online_payment->getData()), true);
