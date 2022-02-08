@@ -53,7 +53,7 @@ class ControllerExtensionPaymentYedpay extends Controller
                 ->setSubject('Order #' . $custom_id)
                 ->setMetadata(json_encode([
                     'opencart' => VERSION,
-                    'yedpay_for_opencart' => '1.1.2',
+                    'yedpay_for_opencart' => '1.1.3',
                 ]));
 
             $support_gateway = $this->config->get('payment_yedpay_support_gateway');
@@ -65,7 +65,8 @@ class ControllerExtensionPaymentYedpay extends Controller
             if ($support_gateway == '4_2' && $support_wallet != '0') {
                 $client->setWallet($this->getWallet($support_wallet));
             }
-            if (is_numeric($expiry_time) &&
+            if (
+                is_numeric($expiry_time) &&
                 filter_var($expiry_time, FILTER_VALIDATE_INT) &&
                 $expiry_time >= '900' &&
                 $expiry_time <= '10800'
@@ -75,7 +76,10 @@ class ControllerExtensionPaymentYedpay extends Controller
 
             $billing_country = strtoupper(trim($order_info['payment_iso_code_2']));
             $billing_address = [
+                'first_name' => trim($order_info['payment_firstname']),
+                'last_name'  => trim($order_info['payment_lastname']),
                 'email' => trim($order_info['email']),
+                'phone' => $order_info['telephone'],
                 'billing_country' => $billing_country,
                 'billing_post_code' => trim($order_info['payment_postcode']),
                 'billing_city' => trim($order_info['payment_city']),
@@ -103,6 +107,14 @@ class ControllerExtensionPaymentYedpay extends Controller
 
         if ($online_payment instanceof Error) {
             $this->log->write('YedPay error:  ' . strval($online_payment->getErrorCode()) . ' - ' . $online_payment->getMessage());
+            if ($online_payment->getErrorCode() == 422 && is_array($online_payment->getErrors())) {
+                $error_message = 'YedPay error details:  ';
+                foreach ($online_payment->getErrors() as $validationErrors) {
+                    foreach ($validationErrors as $errorKey => $errorInfo) {
+                        $error_message .= $errorKey . ': ' . $errorInfo . ' ';
+                    }
+                }
+            }
             die('An error has occurred. Please try again later or contact the store owner.');
         } elseif ($online_payment instanceof Success) {
             $payment_data = json_decode(json_encode($online_payment->getData()), true);
@@ -125,7 +137,7 @@ class ControllerExtensionPaymentYedpay extends Controller
         }
 
         if ($is_payment_success) {
-            echo('success'); //Do not modified or delete
+            echo ('success'); //Do not modified or delete
         } else {
             $this->log->write('Payment failed');
             //check failed
