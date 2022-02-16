@@ -25,7 +25,7 @@ class ControllerExtensionPaymentYedpay extends Controller
 
         $currency = strtoupper($order_info['currency_code']);
         if ($currency != 'HKD') {
-            $this->log->write('YedPay error:  ' . $currency . ' not supported!');
+            $this->log->write('Yedpay error:  ' . $currency . ' not supported!');
             die('Yedpay supports Hong Kong Dollars only!');
         }
 
@@ -106,7 +106,7 @@ class ControllerExtensionPaymentYedpay extends Controller
         $payment_url = '';
 
         if ($online_payment instanceof Error) {
-            $this->log->write('YedPay error:  ' . strval($online_payment->getErrorCode()) . ' - ' . $online_payment->getMessage());
+            $this->log->write('Yedpay error:  ' . strval($online_payment->getErrorCode()) . ' - ' . $online_payment->getMessage());
             if ($online_payment->getErrorCode() == 422 && is_array($online_payment->getErrors())) {
                 $error_message = 'YedPay error details:  ';
                 foreach ($online_payment->getErrors() as $validationErrors) {
@@ -122,7 +122,6 @@ class ControllerExtensionPaymentYedpay extends Controller
         }
 
         $data['action'] = $payment_url;
-
         return $this->load->view('extension/payment/yedpay', $data);
     }
 
@@ -277,5 +276,10 @@ class ControllerExtensionPaymentYedpay extends Controller
             return true;
         }
         return false;
+    }
+
+    public function removeOrderId()
+    {
+        unset($this->session->data['order_id']);
     }
 }

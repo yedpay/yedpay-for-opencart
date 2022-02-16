@@ -4,3 +4,19 @@
         <input type="button" value="{{ button_confirm }}" id="button-confirm" class="btn btn-primary" onclick="window.location = '{{ action }}'"/>
     </div>
 </div>
+
+<script>
+    const button_confirm = document.querySelector('#button-confirm');
+        button_confirm.addEventListener('click', function () {
+			$.ajax({
+				method: 'post',
+				url: 'index.php?route=extension/payment/yedpay/removeOrderId',
+				success: function() {
+            		console.log('Successfully Removed Order ID');
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					console.log(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+        });
+</script>
